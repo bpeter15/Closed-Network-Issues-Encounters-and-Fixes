@@ -1,0 +1,25 @@
+psql -U postgres vxrail -c "delete from system.operation_status where (state='FAILED' or state='IN_PROGRESS' or state='ABANDONED') and owner like 'Lcm%';"
+
+psql -U postgres vxrail -c "update system.operation_status set state='FAILED' where owner='CustomizeComponentScan' and state='STARTED';"
+
+echo '{"state":"NONE","deployed_for_public_api":false}' > /var/lib/vmware-marvin/bundle_state.json
+
+chown tcserver:pivotal /var/lib/vmware-marvin/bundle_state.json
+
+mv  /var/lib/vmware-marvin/composite-upgrade.json /var/lib/vmware-marvin/composite-upgrade.json.old
+
+curl -X GET --unix-socket /var/lib/vxrail/nginx/socket/nginx.sock  "http://127.0.0.1:5000/rest/vxm/internal/lockservice/v1/lock"
+
+curl -X POST --unix-socket /var/lib/vxrail/nginx/socket/nginx.sock "http://127.0.0.1:5000/rest/vxm/internal/lockservice/v1/lock/release"  -H "Content-Type: application/json" -d '{"locked_by": "UPGRADE"}'
+
+
+curl -X POST --unix-socket /var/lib/vxrail/nginx/socket/nginx.sock "http://127.0.0.1:5000/rest/vxm/internal/lockservice/v1/lock/release"  -H "Content-Type: application/json" -d '{"locked_by": "UPGRADE"}'
+
+/var/lib/vmware-marvin/lcm_advanced_mode.properties
+
+vi /var/lib/vmware-marvin/lcm_advanced_mode.properties
+
+lcmProperties.upgrade.advanced.mode.on=false 
+## **change it to true** and save wr the file
+
+# cat the file to verify
