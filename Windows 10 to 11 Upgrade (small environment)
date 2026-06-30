@@ -1,0 +1,23 @@
+#These are the instructions for a particular instance of upgrading from Windows 10 Enterprise LTSC to Windows 11 Enterprise in a small, closed environment
+#Please note that these are steps for manually upgrading on the device, not utilizing MECM as would be the standard
+#Also please note that these are the particular instructions for and Edition mismatch that prevents normal Setup.exe gui installation
+
+Plug in your media containing the Windows Upgrade iso and mount it to your device
+Open PowerShell (opening as admin is the standard I use), and change to the directory you have mounted (ex. cd E:\)
+Enter dir to ensure you can see your upgrade files and iso
+Once you ensure your media is present enter the following command 
+  .\setup.exe /auto upgrade /dynamicupdate disable
+This will begin the installation (~10 minutes), so allow the device some time to install and restart
+Once the device has successfully installed and rebooted, log in and reopen PowerShell
+Enter the following command to enter your product key
+  slmgr /ipk YOUR-PRODUCT-KEY-HERE 
+  #There should be no output for this command
+Next, to activate, type in slui.exe 
+This will bring you to the System -> Activation Page
+Select Activate as phone call
+#Note that phone call activation is deprecated and the new site to do this is aka.ms/aoh 
+The steps from here are quite intuitive on the site. Simply enter the installation numbers given once the Phone Call Activation option was selected on your device into the aka website, 
+and enter the Numbers confirming provided back the site on the next step into your device you are upgrading.
+All done!
+
+#Important to note, if you are upgrading Microsoft office media as well, ensure you uninstall the packages your environment deems unnecessary prior to pulling updates for it
