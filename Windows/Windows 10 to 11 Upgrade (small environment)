@@ -4,7 +4,7 @@
 
 Plug in your media containing the Windows Upgrade iso and mount it to your device
 Open PowerShell (opening as admin is the standard I use), and change to the directory you have mounted (ex. cd E:\)
-Enter dir to ensure you can see your upgrade files and iso
+Type in DISM /online /Get-CurrentEditionEnter to display 
 Once you ensure your media is present enter the following command 
   .\setup.exe /auto upgrade /dynamicupdate disable
 This will begin the installation (~10 minutes), so allow the device some time to install and restart
