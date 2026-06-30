@@ -1,0 +1,36 @@
+###This page documents useful OpenSSL commands for retrieving, inspecting, and converting SSL/TLS certificates. These commands are helpful when debugging 
+#HTTPS issues, validating certificate chains, or converting certificate formats for various systems.
+
+# Retrieve a Server Certificate
+# Connect to a remote server and print the TLS handshake
+
+openssl s_client -connect google.com:443 < /dev/null
+
+# This command initiates a TLS handshake with the remote server and prints the certificate along with connection details.
+# < /dev/null prevents the command from waiting for input.
+
+#Retrieve a Server Certificate
+#Connect to a remote server and print the TLS handshake
+
+openssl s_client -connect google.com:443 < /dev/null
+#This command initiates a TLS handshake with the remote server and prints the certificate along with connection details.
+# < /dev/null prevents the command from waiting for input.
+
+#Certificate Format Conversion
+# Convert DER → DER (rewrite/validate)
+
+openssl x509 -in ServerCertificate.der -outform der -out ServerCertificate.der
+
+# This rewrites the certificate in DER format.
+# Useful for validating or normalizing certificate files.
+
+# Convert DER → PEM
+
+openssl x509 -in ServerCertificate.der -inform der -outform pem -out ServerCertificate.pem
+
+#This converts a binary DER certificate into a Base64‑encoded PEM certificate.
+#PEM output will look like:
+#Code
+#-----BEGIN CERTIFICATE-----
+#MIID...
+#-----END CERTIFICATE-----
