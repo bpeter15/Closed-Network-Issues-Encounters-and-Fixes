@@ -1,0 +1,26 @@
+## **Email all users about site as a courtesy**
+## **In Windows Servicing, see how many computers are in the win11 completed folder, and how many in win10 and take note**
+## **In the newly added devices to the win11 device collection, take note of how many added, and which ones**
+# 1) Add Devices to device collection windows 11 
+
+#2) Make sure Devices have space (60 G)- log in and check
+
+#3) Install secure boot if no one is active on device
+
+#4) In the device collection, run the evaluate software updates
+
+#5) The update takes a few hours to kick off, so kick off in the afternoon when there is an optimal potential downtime window/less active users
+
+#6) In the morning check the Windows Servicing numbers to verify that they came back as expected
+
+#7) Run the branding restore script to ensure your custom Branding will be displayed
+
+#8) Run the startup menu script
+
+#9) Run the microsoft apps, if necessary then the unwanted apps script
+
+#10) log into each machine to verify it is fine, and any updates are good.
+
+#11) check for any failure popups when logging in
+
+#12) once verified good and updated, remove them from the collection, and repeat for new collections to be updated.
